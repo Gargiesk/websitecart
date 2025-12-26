@@ -4,8 +4,11 @@ import jwt from "jsonwebtoken";
 const router = express.Router();
 
 router.post("/login", (req, res) => {
-  const { email, password } = req.body;
+  console.log("ENV ADMIN EMAIL:", process.env.ADMIN_EMAIL);
+  console.log("ENV ADMIN PASSWORD:", process.env.ADMIN_PASSWORD);
 
+  const { email, password } = req.body;
+   
   if (
     email === process.env.ADMIN_EMAIL &&
     password === process.env.ADMIN_PASSWORD
