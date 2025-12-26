@@ -7,7 +7,7 @@ export default function TemplateDetails() {
   const [template, setTemplate] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/templates/${id}`).then(res => {
+    axios.get(`https://websitecart.onrender.com/templates/${id}`).then(res => {
       setTemplate(res.data);
     });
   }, []);

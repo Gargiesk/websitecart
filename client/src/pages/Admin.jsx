@@ -27,13 +27,13 @@ export default function Admin() {
 
   // ================= LOAD DATA =================
   const loadTemplates = async () => {
-    const res = await axios.get("http://localhost:5000/templates");
+    const res = await axios.get("https://websitecart.onrender.com");
     // supports both paginated and normal responses
     setTemplates(res.data.templates || res.data || []);
   };
 
   const loadRequests = async () => {
-    const res = await axios.get("http://localhost:5000/requests");
+    const res = await axios.get("https://websitecart.onrender.com/requests");
     setRequests(res.data || []);
   };
 
@@ -74,13 +74,13 @@ export default function Admin() {
 
     if (editId) {
       await axios.put(
-        `http://localhost:5000/templates/${editId}`,
+        `https://websitecart.onrender.com/templates/${editId}`,
         formData
       );
       alert("Template updated successfully");
     } else {
       await axios.post(
-        "http://localhost:5000/templates",
+        "https://websitecart.onrender.com/templates",
         formData
       );
       alert("Template added successfully");
@@ -106,7 +106,7 @@ export default function Admin() {
 
   const deleteTemplate = async (id) => {
     if (!window.confirm("Are you sure you want to delete this template?")) return;
-    await axios.delete(`http://localhost:5000/templates/${id}`);
+    await axios.delete(`https://websitecart.onrender.com/templates/${id}`);
     loadTemplates();
   };
 

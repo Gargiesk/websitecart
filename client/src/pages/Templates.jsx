@@ -18,7 +18,7 @@ export default function Templates() {
 
   const fetchTemplates = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/templates", {
+      const res = await axios.get("https://websitecart.onrender.com/templates", {
         params: {
           ...filters,
           search,
