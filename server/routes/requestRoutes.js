@@ -5,40 +5,54 @@ import sendEmail from "../utils/sendEmail.js";
 const router = express.Router();
 
 // POST - add request + send email
-router.post("/", async (req, res) => {
+router.post("/requests", async (req, res) => {
   try {
-    const { name, email, templateName, budget, message } = req.body;
+    const {
+      name,
+      email,
+      websiteType,
+      budget,
+      message,
+      templateInterested
+    } = req.body;
+
+    if (!name || !email || !websiteType || !budget) {
+      return res.status(400).json({ message: "Missing required fields" });
+    }
 
     const newRequest = new Request({
       name,
       email,
-      templateName,
+      websiteType,
       budget,
       message,
+      templateInterested,
     });
 
     await newRequest.save();
 
-    // Send email to admin
-    await sendEmail({
-      subject: "📩 New Website Customization Request",
-      html: `
-        <h2>New Customization Request</h2>
-        <p><b>Name:</b> ${name}</p>
-        <p><b>Email:</b> ${email}</p>
-        <p><b>Template:</b> ${templateName}</p>
-        <p><b>Budget:</b> ${budget}</p>
-        <p><b>Message:</b></p>
-        <p>${message}</p>
-      `,
-    });
+    // OPTIONAL: Email (wrap separately)
+    try {
+      await sendEmail({
+        name,
+        email,
+        websiteType,
+        budget,
+        message,
+        templateInterested,
+      });
+    } catch (emailErr) {
+      console.error("Email failed:", emailErr.message);
+    }
 
-    res.json({ message: "Request submitted & email sent" });
+    res.status(201).json({ message: "Request submitted successfully" });
+
   } catch (err) {
-    console.error("Email error:", err);
-    res.status(500).json({ message: "Request saved but email failed" });
+    console.error("Request API error:", err);
+    res.status(500).json({ message: "Server error" });
   }
 });
+
 
 // GET - admin fetch requests
 router.get("/", async (req, res) => {

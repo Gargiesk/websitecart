@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+
+
 export default function Admin() {
   // ================= AUTH =================
   const handleLogout = () => {
@@ -10,7 +15,7 @@ export default function Admin() {
 
   // ================= TEMPLATE STATES =================
   const [templates, setTemplates] = useState([]);
-  const [editId, setEditId] = useState(null);
+  const [editId, setEditId] = useState([]);
 
   const [form, setForm] = useState({
     name: "",
@@ -20,7 +25,7 @@ export default function Admin() {
     demoUrl: ""
   });
 
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState([]);
 
   // ================= REQUEST STATES =================
   const [requests, setRequests] = useState([]);
@@ -44,7 +49,9 @@ export default function Admin() {
 
   // ================= STATS =================
   const totalTemplates = templates.length;
-  const totalRequests = requests.length;
+  const totalRequests = Array.isArray(requests)
+  ? requests.length
+  : 0;
 
   const averagePrice =
     templates.length > 0
