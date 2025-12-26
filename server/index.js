@@ -18,7 +18,7 @@ app.use("/uploads", express.static("uploads"));
 
 // Routes
 app.use("/templates", templateRoutes);
-app.use("/auth", authRoutes);
+app.use("/", authRoutes);
 app.use("/requests", requestRoutes);
 
 // Test route
