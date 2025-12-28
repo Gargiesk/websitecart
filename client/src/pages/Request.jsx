@@ -9,7 +9,7 @@ export default function Request() {
   const [form, setForm] = useState({
     name: "",
     email: "",
-    templateName: "",
+    templateInterested: "",
     budget: "",
     message: ""
   });
@@ -19,7 +19,7 @@ export default function Request() {
     if (templateFromUrl) {
       setForm((prev) => ({
         ...prev,
-        templateName: templateFromUrl
+        templateInterested: templateFromUrl
       }));
     }
   }, [templateFromUrl]);
@@ -31,14 +31,14 @@ export default function Request() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await axios.post("https://websitecart-backend.onrender.com/requests", form);
+    await axios.post("https://websitecart.onrender.com/requests", form);
 
     alert("Your request has been submitted. We will contact you soon.");
 
     setForm({
       name: "",
       email: "",
-      templateName: "",
+      templateInterested: "",
       budget: "",
       message: ""
     });
@@ -70,9 +70,9 @@ export default function Request() {
 
         <input
           className="form-control mb-3"
-          name="templateName"
+          name="templateInterested"
           placeholder="Template Interested In"
-          value={form.templateName}
+          value={form.templateInterested}
           onChange={handleChange}
          readOnly={!!templateFromUrl}
         />

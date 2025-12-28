@@ -281,7 +281,7 @@ export default function Admin() {
             <tr key={r._id}>
               <td>{r.name}</td>
               <td>{r.email}</td>
-              <td>{r.templateName}</td>
+              <td>{r.templateInterested}</td>
               <td>{r.budget}</td>
               <td>{r.message}</td>
             </tr>
