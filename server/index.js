@@ -31,7 +31,7 @@ app.use(express.json());
 app.use("/requests", requestRoutes);
 app.use("/templates", templateRoutes);
 app.use("/uploads", express.static("uploads"));
-app.use("/auth", authRoutes);
+app.use("/", authRoutes);
 
 // Routes
 
