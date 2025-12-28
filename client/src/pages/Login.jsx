@@ -11,7 +11,7 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const res = await axios.post("https://websitecart-backend.onrender.com//login", {
+      const res = await axios.post("https://websitecart-backend.onrender.com/auth/login", {
         email,
         password
       });
