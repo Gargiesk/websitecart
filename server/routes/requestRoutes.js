@@ -3,9 +3,18 @@ import Request from "../models/Request.js";
 import sendEmail from "../utils/sendEmail.js";
 
 const router = express.Router();
+router.get("/", async (req, res) => {
+  try {
+    const requests = await Request.find().sort({ createdAt: -1 });
+    res.json(requests);
+  } catch (err) {
+    console.error("GET /requests error:", err);
+    res.status(500).json({ message: "Failed to fetch requests" });
+  }
+});
 
 // POST - add request + send email
-router.post("/requests", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const {
       name,
@@ -48,16 +57,16 @@ router.post("/requests", async (req, res) => {
     res.status(201).json({ message: "Request submitted successfully" });
 
   } catch (err) {
-    console.error("Request API error:", err);
+    console.error("POST /requests error:", err);
     res.status(500).json({ message: "Server error" });
   }
 });
 
 
 // GET - admin fetch requests
-router.get("/", async (req, res) => {
-  const data = await Request.find().sort({ createdAt: -1 });
-  res.json(data);
-});
+// router.get("/", async (req, res) => {
+//   const data = await Request.find().sort({ createdAt: -1 });
+//   res.json(data);
+// });
 
 export default router;
