@@ -28,4 +28,4 @@ export default function App() {
   );
 }
 // to login in admin http://localhost:5173/login
-// later on https://websitecart.onrender.com
+// later on https://websitecart-backend.onrender.com/

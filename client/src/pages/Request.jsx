@@ -31,7 +31,7 @@ export default function Request() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await axios.post("https://websitecart.onrender.com/requests", form);
+    await axios.post("https://websitecart-backend.onrender.com/requests", form);
 
     alert("Your request has been submitted. We will contact you soon.");
 

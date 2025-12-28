@@ -5,8 +5,14 @@ import cors from "cors";
 import 'dotenv/config';
 import templateRoutes from "./routes/templateRoutes.js";
 import requestRoutes from "./routes/requestRoutes.js";
+import dotenv from "dotenv";
 
-const app = express();          // ✅ FIRST create app
+dotenv.config();
+
+const app = express();
+
+
+         // ✅ FIRST create app
 
 app.use(cors({
   origin: "*",

@@ -32,13 +32,13 @@ export default function Admin() {
 
   // ================= LOAD DATA =================
   const loadTemplates = async () => {
-    const res = await axios.get("https://websitecart.onrender.com");
+    const res = await axios.get("https://websitecart-backend.onrender.com");
     // supports both paginated and normal responses
     setTemplates(res.data.templates || res.data || []);
   };
 
   const loadRequests = async () => {
-    const res = await axios.get("https://websitecart.onrender.com/requests");
+    const res = await axios.get("https://websitecart-backend.onrender.com/requests");
     setRequests(res.data || []);
   };
 
@@ -81,13 +81,13 @@ export default function Admin() {
 
     if (editId) {
       await axios.put(
-        `https://websitecart.onrender.com/templates/${editId}`,
+        `https://websitecart-backend.onrender.com/templates/${editId}`,
         formData
       );
       alert("Template updated successfully");
     } else {
       await axios.post(
-        "https://websitecart.onrender.com/templates",
+        "https://websitecart-backend.onrender.com/templates",
         formData
       );
       alert("Template added successfully");
@@ -113,7 +113,7 @@ export default function Admin() {
 
   const deleteTemplate = async (id) => {
     if (!window.confirm("Are you sure you want to delete this template?")) return;
-    await axios.delete(`https://websitecart.onrender.com/templates/${id}`);
+    await axios.delete(`https://websitecart-backend.onrender.com//templates/${id}`);
     loadTemplates();
   };
 
