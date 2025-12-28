@@ -47,8 +47,11 @@ export default function Admin() {
   };
 
   useEffect(() => {
-    loadTemplates();
-    loadRequests();
+    const fetchData = async () => {
+      await loadTemplates();
+      await loadRequests();
+    };
+    fetchData();
   }, []);
 
   /* ================= STATS (SAFE) ================= */
