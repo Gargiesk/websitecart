@@ -14,18 +14,26 @@ const app = express();
 
          // ✅ FIRST create app
 
-app.use(cors({
-  origin: "*",
-  methods: ["GET", "POST"],
-   allowedHeaders: ["Content-Type", "Authorization"]
-}));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://websitecart2026.netlify.app"
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
+// Handle preflight requests
+app.options("*", cors());
 app.use(express.json());
+app.use("/requests", requestRoutes);
+app.use("/templates", templateRoutes);
 app.use("/uploads", express.static("uploads"));
+app.use("/auth", authRoutes);
 
 // Routes
-app.use("/templates", templateRoutes);
-app.use("/", authRoutes);
-app.use("/requests", requestRoutes);
 
 // Test route
 app.get("/", (req, res) => {
